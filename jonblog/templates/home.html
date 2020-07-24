@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+
+<html lang="en" dir="ltr">
+  <head>
+
+   {% block head %}
+    <title>Jon's Blog</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.buttercms.com/buttercms-1.2.3.min.js"></script>
+
+    <script>
+      var butter = Butter('BUTTER_API_KEY');
+    </script>
+    {% endblock %}
+  </head>
+  <body>
+
+   {% block body %}
+    <div class="container center" id="app">
+
+      <div class="jumbotron">
+          <img v-for="logo in results.data.fields.customer_logos" :src="logo.logo_image" style="width:10%">
+        <h1 class="display-4"><h1>[[results.data.fields.seo_title]]</h1>
+        <p class="lead">[[results.data.fields.headline]]</p>
+        <hr class="my-4">
+        <a class="btn btn-primary btn-lg" href="#" role="button">[[results.data.fields.call_to_action]]</a>
+
+      </div>
+
+      <div v-html="results.data.fields.body"></div>
+    </div>
+
+
+
+
+  <script>
+     const app = new Vue({
+       delimiters: ['[[', ']]'],
+       el:"#app",
+       data: {
+         message:'Hello Vue',
+         results:[],
+       },
+      mounted() {
+           butter.page.retrieve('*', 'sample-page')
+              .then(response => {this.results = response.data})
+       }
+     })
+  </script>
+
+  {% endblock %}
+
+  </body>
+</html>

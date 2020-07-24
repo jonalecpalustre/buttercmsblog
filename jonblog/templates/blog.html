@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container">
+<h2>Posts</h2>
+
+<ul class="list-group">
+<!-- List of posts -->
+{% for post in recent_posts %}
+    <li class="list-group-item">
+      <a href="{% url 'blog_post' post.slug %}">{{ post.title }}</a>
+    </li>
+{% endfor %}
+<ul class="list-group">
+
+<!-- Pagination links -->
+<br></br>
+<div>
+  {% if previous_page %}
+  <button type="button" class="btn btn-light"><a href="{% url "archive" previous_page %}">Prev</a></button>
+
+  {% endif %}
+
+  {% if next_page %}
+  <button type="button" class="btn btn-light"><a href="{% url "archive" next_page %}">Next</a></button>
+  {% endif %}
+</div>
+
+</div>
+
+{% endblock %}
