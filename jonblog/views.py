@@ -1,7 +1,7 @@
 from django.http import Http404
 from django.shortcuts import render
 from butter_cms import ButterCMS
-client = ButterCMS('7417e44bc7364519dcfe358e1f7f7a3324713f0d')
+client = ButterCMS('BUTTER_API_KEY')
 
 
 def home(request):
