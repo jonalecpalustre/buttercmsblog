@@ -14,7 +14,8 @@ import django_heroku
 import dj_database_url
 from decouple import config
 
-BUTTER_API_KEY = os.environ.get('BUTTER_API_KEY')
+
+BUTTER_API_KEY = config('BUTTER_API_KEY', default='')
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
