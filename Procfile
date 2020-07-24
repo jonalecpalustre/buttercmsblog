@@ -1,1 +1,1 @@
-web: gunicorn butterblog
+web: gunicorn butterblog.wsgi
