@@ -10,10 +10,18 @@
 
 <!-- Post author -->
 Posted by {{post.author.first_name}} {{post.author.last_name}}
-
-
+<p>Published on <span class="utcToLocal">{{post.published}}</span></p>
 <!-- Post body -->
 <br></br>
 {{ post.body|safe }}
 </div>
+
+<script type="text/javascript">
+  document.querySelectorAll(".utcToLocal").forEach(
+  function (i) {
+    i.innerText = new Date(i.innerText).toLocaleString();
+  }
+);
+</script>
+
 {% endblock %}
